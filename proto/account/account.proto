@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+
+option go_package = "github.com/grpc_tutorial/proto/account";
+
+package account;
+
+message Account {
+    string accountId = 1;
+    int32 balance = 2;
+}
+
+service AccountService {
+
+    rpc NewAccount (google.protobuf.Int32Value) returns (Account) {}
+    rpc GetAccount (google.protobuf.StringValue) returns (Account) {}
+    rpc DeleteAccount (google.protobuf.StringValue) returns (Account) {}
+
+    rpc Deposit (Account) returns (Account) {}
+    rpc Withdraw (Account) returns (Account) {}
+
+}
